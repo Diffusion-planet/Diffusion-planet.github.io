@@ -2,10 +2,10 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <meta name="description" content="Your Project Description">
-  <meta name="keywords" content="AI, Machine Learning, Research">
+  <meta name="description" content="IP-to-Portrait: SDXL Inpainting + IP-Adapter FaceID Plus v2 기반 얼굴 합성 파이프라인">
+  <meta name="keywords" content="AI, Face Synthesis, SDXL, IP-Adapter, Inpainting, Diffusion Models">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Your Project Title</title>
+  <title>IP-to-Portrait: Deformable Neural Radiance Fields for Face Synthesis</title>
 
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
@@ -55,7 +55,7 @@
     }
 
     .container {
-      max-width: 1000px;
+      max-width: 1200px;
     }
 
     h2.title {
@@ -81,10 +81,50 @@
       box-shadow: 0 4px 8px rgba(0,0,0,0.1);
     }
 
+    .team-member {
+      text-align: center;
+      margin: 1rem;
+    }
+
+    .team-member img {
+      border-radius: 50%;
+      width: 120px;
+      height: 120px;
+      margin-bottom: 0.5rem;
+    }
+
+    .tech-stack .tag {
+      margin: 0.3rem;
+      font-size: 0.9rem;
+    }
+
     footer {
       padding: 2rem;
       background-color: #f5f5f5;
       text-align: center;
+    }
+
+    table {
+      margin: 1.5rem auto;
+      border-collapse: collapse;
+      background: white;
+    }
+
+    table th, table td {
+      padding: 0.75rem;
+      border: 1px solid #dbdbdb;
+    }
+
+    table th {
+      background-color: #f5f5f5;
+      font-weight: 700;
+    }
+
+    .pipeline-diagram {
+      background: #f9f9f9;
+      padding: 2rem;
+      border-radius: 8px;
+      margin: 2rem 0;
     }
   </style>
 </head>
@@ -96,52 +136,34 @@
       <div class="container is-max-desktop">
         <div class="columns is-centered">
           <div class="column has-text-centered">
-            <h1 class="publication-title">Your Amazing Project Title</h1>
+            <h1 class="publication-title">IP-to-Portrait</h1>
+            <p style="font-size: 1.3rem; margin-bottom: 1.5rem;">
+              SDXL Inpainting + IP-Adapter FaceID Plus v2 기반 얼굴 합성 파이프라인
+            </p>
+            
             <div class="publication-authors">
               <span class="author-block">
-                <a href="#">Author Name 1</a><sup>1</sup>,
+                <a href="https://github.com/hongjiyeon56">홍지연</a> (팀장),
               </span>
               <span class="author-block">
-                <a href="#">Author Name 2</a><sup>2</sup>,
+                <a href="https://github.com/byungkun0823">임병건</a>,
               </span>
               <span class="author-block">
-                <a href="#">Author Name 3</a><sup>1</sup>
+                <a href="https://github.com/danlee-dev">이성민</a>,
+              </span>
+              <span class="author-block">
+                <a href="https://github.com/seoyeon-eo">최서연</a>
               </span>
             </div>
 
             <div class="publication-authors">
-              <span class="author-block"><sup>1</sup>Your University,</span>
-              <span class="author-block"><sup>2</sup>Your Company</span>
+              <span class="author-block">Project Prometheus 2025-2 Demo Day - Team 4</span>
             </div>
 
             <!-- Links -->
             <div class="publication-links">
               <span class="link-block">
-                <a href="#" class="button is-dark is-rounded">
-                  <span class="icon">
-                    <i class="fas fa-file-pdf"></i>
-                  </span>
-                  <span>Paper</span>
-                </a>
-              </span>
-              <span class="link-block">
-                <a href="#" class="button is-dark is-rounded">
-                  <span class="icon">
-                    <i class="ai ai-arxiv"></i>
-                  </span>
-                  <span>arXiv</span>
-                </a>
-              </span>
-              <span class="link-block">
-                <a href="#" class="button is-dark is-rounded">
-                  <span class="icon">
-                    <i class="fab fa-youtube"></i>
-                  </span>
-                  <span>Video</span>
-                </a>
-              </span>
-              <span class="link-block">
-                <a href="#" class="button is-dark is-rounded">
+                <a href="https://github.com/Diffusion-planet/ip-to-portrait" class="button is-dark is-rounded">
                   <span class="icon">
                     <i class="fab fa-github"></i>
                   </span>
@@ -149,13 +171,30 @@
                 </a>
               </span>
               <span class="link-block">
-                <a href="#" class="button is-dark is-rounded">
+                <a href="https://github.com/Diffusion-planet/ip-to-portrait#readme" class="button is-dark is-rounded">
                   <span class="icon">
-                    <i class="fas fa-database"></i>
+                    <i class="fas fa-book"></i>
                   </span>
-                  <span>Data</span>
+                  <span>Documentation</span>
                 </a>
               </span>
+              <span class="link-block">
+                <a href="#demo" class="button is-dark is-rounded">
+                  <span class="icon">
+                    <i class="fas fa-play"></i>
+                  </span>
+                  <span>Demo</span>
+                </a>
+              </span>
+            </div>
+
+            <!-- Badges -->
+            <div style="margin-top: 1.5rem;">
+              <img src="https://img.shields.io/badge/SDXL-Inpainting-blue?style=for-the-badge" alt="SDXL">
+              <img src="https://img.shields.io/badge/IP--Adapter-FaceID%20Plus%20v2-green?style=for-the-badge" alt="IP-Adapter">
+              <img src="https://img.shields.io/badge/BiSeNet-Face%20Parsing-orange?style=for-the-badge" alt="BiSeNet">
+              <img src="https://img.shields.io/badge/InsightFace-Face%20Embedding-red?style=for-the-badge" alt="InsightFace">
+              <img src="https://img.shields.io/badge/Gemini-2.5%20Flash-8E75B2?style=for-the-badge&logo=googlegem ini&logoColor=white" alt="Gemini">
             </div>
           </div>
         </div>
@@ -171,11 +210,13 @@
           <h2 class="title">Abstract</h2>
           <div class="content has-text-justified">
             <p>
-              Your abstract goes here. Describe your research problem, approach, and main contributions.
-              This section should give readers a quick overview of what your project is about and why it matters.
+              IP-to-Portrait는 레퍼런스 이미지의 얼굴을 교체하면서 원본 배경, 포즈, 조명을 완벽하게 보존하는 AI 기반 얼굴 합성 파이프라인입니다. 
+              최신 디퓨전 모델(SDXL Inpainting)과 아이덴티티 보존 어댑터(IP-Adapter FaceID Plus v2)를 결합하여 사실적인 얼굴 합성을 수행합니다.
             </p>
             <p>
-              Add more details about your methodology and results. Make it compelling and informative!
+              본 시스템은 정밀한 얼굴 파싱(BiSeNet), 얼굴 임베딩 추출(InsightFace), 자동 프롬프트 생성(Gemini 2.5 Flash)을 통합하여 
+              사용자가 쉽게 고품질의 얼굴 합성 결과를 얻을 수 있도록 지원합니다. 또한 병렬 처리와 실시간 미리보기 기능을 통해 
+              빠르고 직관적인 사용자 경험을 제공합니다.
             </p>
           </div>
         </div>
@@ -183,59 +224,313 @@
     </div>
   </section>
 
-  <!-- Teaser Image/Video -->
+  <!-- Demo Images -->
+  <section class="section" id="demo">
+    <div class="container is-max-desktop">
+      <h2 class="title has-text-centered">웹 애플리케이션</h2>
+      
+      <div class="content">
+        <h3>생성 워크플로우 화면</h3>
+        <p>메인 인터페이스는 노드 기반 워크플로우로 입력을 생성 파이프라인에 시각적으로 연결할 수 있습니다.</p>
+        <div class="image-container">
+          <img src="https://raw.githubusercontent.com/Diffusion-planet/ip-to-portrait/main/images/generation-screen.png" alt="Generation Screen">
+        </div>
+
+        <h3>인페인팅 파라미터 노드</h3>
+        <p>직관적인 UI로 디퓨전 및 마스킹 파라미터를 구성할 수 있습니다.</p>
+        <div class="image-container">
+          <img src="https://raw.githubusercontent.com/Diffusion-planet/ip-to-portrait/main/images/inpainting-parameters-setting-node.png" alt="Inpainting Parameters">
+        </div>
+
+        <h3>자동 프롬프트 생성</h3>
+        <p>Gemini 2.5 Flash가 얼굴 특징을 분석하여 상세한 설명적 프롬프트를 자동으로 생성합니다.</p>
+        <div class="image-container">
+          <img src="https://raw.githubusercontent.com/Diffusion-planet/ip-to-portrait/main/images/auto-prompt-generation-node.png" alt="Auto Prompt">
+        </div>
+
+        <h3>생성 제어 및 실시간 미리보기</h3>
+        <p>병렬 처리 지원으로 배치 생성을 제어하고 실시간으로 결과를 확인할 수 있습니다.</p>
+        <div class="image-container">
+          <img src="https://raw.githubusercontent.com/Diffusion-planet/ip-to-portrait/main/images/generation-control-and-step-result-latent-image-return-node.png" alt="Generation Control">
+        </div>
+
+        <h3>생성 히스토리</h3>
+        <p>전체 파라미터 리콜 기능으로 이전 생성에 접근할 수 있습니다.</p>
+        <div class="image-container">
+          <img src="https://raw.githubusercontent.com/Diffusion-planet/ip-to-portrait/main/images/generation-history-modal.png" alt="History">
+        </div>
+
+        <h3>생성 리포트</h3>
+        <p>모든 파라미터와 다운로드 가능한 결과가 포함된 상세 리포트를 제공합니다.</p>
+        <div class="image-container">
+          <img src="https://raw.githubusercontent.com/Diffusion-planet/ip-to-portrait/main/images/generation-report-modal.png" alt="Report">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- AI Pipeline -->
   <section class="section">
     <div class="container is-max-desktop">
-      <div class="columns is-centered has-text-centered">
-        <div class="column">
-          <h2 class="title">Teaser</h2>
-          <div class="image-container">
-            <img src="https://via.placeholder.com/800x400?text=Your+Teaser+Image" alt="Teaser">
+      <h2 class="title has-text-centered">AI 파이프라인 구조</h2>
+      
+      <div class="image-container">
+        <img src="https://raw.githubusercontent.com/Diffusion-planet/ip-to-portrait/main/images/face-inpainting-pipeline.png" alt="AI Pipeline">
+      </div>
+
+      <div class="content pipeline-diagram">
+        <h3>파이프라인 흐름</h3>
+        <ol>
+          <li><strong>입력 처리:</strong> 레퍼런스 이미지(배경/포즈), 얼굴 이미지(정체성 소스), 프롬프트(텍스트 설명)</li>
+          <li><strong>얼굴 감지 및 파싱:</strong> OpenCV/MediaPipe로 얼굴 감지, BiSeNet으로 19개 클래스 세그멘테이션</li>
+          <li><strong>마스크 생성:</strong> 세그멘테이션 결과에서 바이너리 마스크 생성 및 확장/블러/패딩 적용</li>
+          <li><strong>임베딩 추출:</strong> InsightFace (512차원 얼굴 임베딩) + CLIP ViT-H (257x1280 이미지 임베딩)</li>
+          <li><strong>IP-Adapter 주입:</strong> 얼굴 + CLIP 임베딩을 SDXL 어텐션 레이어에 주입</li>
+          <li><strong>SDXL Inpainting:</strong> 마스크 영역만 디노이즈하면서 배경 보존, Stop-At 파라미터 적용</li>
+          <li><strong>출력:</strong> 최종 합성 결과 생성 및 WebSocket 실시간 업데이트</li>
+        </ol>
+
+        <h3>모델 구성</h3>
+        <table>
+          <thead>
+            <tr>
+              <th>모델</th>
+              <th>용도</th>
+              <th>크기</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>SDXL Inpainting</td>
+              <td>기본 디퓨전 모델</td>
+              <td>~6GB</td>
+            </tr>
+            <tr>
+              <td>IP-Adapter FaceID Plus v2</td>
+              <td>얼굴 정체성 주입</td>
+              <td>~100MB</td>
+            </tr>
+            <tr>
+              <td>CLIP ViT-H/14</td>
+              <td>이미지 임베딩 추출</td>
+              <td>~2GB</td>
+            </tr>
+            <tr>
+              <td>InsightFace (antelopev2)</td>
+              <td>얼굴 임베딩 추출</td>
+              <td>~300MB</td>
+            </tr>
+            <tr>
+              <td>BiSeNet</td>
+              <td>얼굴 파싱/세그멘테이션</td>
+              <td>~50MB</td>
+            </tr>
+            <tr>
+              <td>Gemini 2.5 Flash</td>
+              <td>자동 프롬프트 생성 (API)</td>
+              <td>Cloud</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- Hyperparameters -->
+  <section class="section">
+    <div class="container is-max-desktop">
+      <h2 class="title has-text-centered">하이퍼파라미터</h2>
+      
+      <div class="content">
+        <h3>Diffusion 파라미터</h3>
+        <table>
+          <thead>
+            <tr>
+              <th>파라미터</th>
+              <th>범위</th>
+              <th>기본값</th>
+              <th>권장값</th>
+              <th>설명</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>steps</td>
+              <td>1-100</td>
+              <td>50</td>
+              <td>50</td>
+              <td>디퓨전 스텝 수</td>
+            </tr>
+            <tr>
+              <td>guidance_scale</td>
+              <td>1-20</td>
+              <td>7.5</td>
+              <td>2.5-4.0</td>
+              <td>CFG 스케일 - 낮을수록 자연스러움</td>
+            </tr>
+            <tr>
+              <td>denoise_strength</td>
+              <td>0.0-1.0</td>
+              <td>0.92</td>
+              <td>0.85</td>
+              <td>생성 강도 - 높을수록 더 많이 재생성</td>
+            </tr>
+            <tr>
+              <td>face_strength</td>
+              <td>0.0-1.5</td>
+              <td>0.85</td>
+              <td>0.80</td>
+              <td>정체성을 위한 IP-Adapter 스케일</td>
+            </tr>
+            <tr>
+              <td>stop_at</td>
+              <td>0.0-1.0</td>
+              <td>1.0</td>
+              <td>0.7</td>
+              <td>FaceID 영향 중단 시점</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h3>Stop-At 기능</h3>
+        <p>
+          Stop-At 파라미터는 IP-Adapter FaceID가 생성에 영향을 미치는 것을 언제 중단할지 제어합니다. 
+          예를 들어 stop_at=0.7로 설정하면 생성 과정의 70% 지점까지는 FaceID가 강하게 정체성과 구조를 가이드하고, 
+          이후 30%는 프롬프트만으로 자연스러운 디테일을 완성합니다.
+        </p>
+
+        <table>
+          <thead>
+            <tr>
+              <th>Stop-At 값</th>
+              <th>효과</th>
+              <th>사용 시점</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>1.0</td>
+              <td>전체 과정에서 FaceID 적용</td>
+              <td>최대 정체성 보존</td>
+            </tr>
+            <tr>
+              <td>0.7-0.8</td>
+              <td>70-80%에서 FaceID 중단</td>
+              <td>권장 균형점</td>
+            </tr>
+            <tr>
+              <td>0.5-0.6</td>
+              <td>초반 스텝에서만 FaceID</td>
+              <td>얼굴이 부자연스러울 때</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- Team -->
+  <section class="section">
+    <div class="container is-max-desktop">
+      <h2 class="title has-text-centered">팀원</h2>
+      
+      <div class="columns is-multiline is-centered">
+        <div class="column is-3">
+          <div class="team-member">
+            <img src="https://github.com/hongjiyeon56.png" alt="홍지연">
+            <h4 class="title is-5">홍지연 (팀장)</h4>
+            <p><a href="https://github.com/hongjiyeon56">@hongjiyeon56</a></p>
           </div>
-          <div class="content has-text-justified">
-            <p>
-              Caption for your teaser image or video. Explain what viewers are looking at.
-            </p>
+        </div>
+        <div class="column is-3">
+          <div class="team-member">
+            <img src="https://github.com/byungkun0823.png" alt="임병건">
+            <h4 class="title is-5">임병건</h4>
+            <p><a href="https://github.com/byungkun0823">@byungkun0823</a></p>
+          </div>
+        </div>
+        <div class="column is-3">
+          <div class="team-member">
+            <img src="https://github.com/danlee-dev.png" alt="이성민">
+            <h4 class="title is-5">이성민</h4>
+            <p><a href="https://github.com/danlee-dev">@danlee-dev</a></p>
+          </div>
+        </div>
+        <div class="column is-3">
+          <div class="team-member">
+            <img src="https://github.com/seoyeon-eo.png" alt="최서연">
+            <h4 class="title is-5">최서연</h4>
+            <p><a href="https://github.com/seoyeon-eo">@seoyeon-eo</a></p>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Method -->
+  <!-- Tech Stack -->
   <section class="section">
     <div class="container is-max-desktop">
-      <div class="columns is-centered">
-        <div class="column is-full-width">
-          <h2 class="title has-text-centered">Method</h2>
-          <div class="content has-text-justified">
-            <p>
-              Describe your methodology here. You can add diagrams, equations, and detailed explanations.
-            </p>
-          </div>
-          <div class="image-container">
-            <img src="https://via.placeholder.com/800x400?text=Method+Overview" alt="Method">
-          </div>
+      <h2 class="title has-text-centered">기술 스택</h2>
+      
+      <div class="content tech-stack">
+        <h3>AI / ML</h3>
+        <div class="tags">
+          <span class="tag is-info is-medium">Python</span>
+          <span class="tag is-info is-medium">PyTorch</span>
+          <span class="tag is-info is-medium">Hugging Face Diffusers</span>
+          <span class="tag is-info is-medium">OpenCV</span>
+          <span class="tag is-info is-medium">SDXL Inpainting</span>
+          <span class="tag is-info is-medium">IP-Adapter FaceID Plus v2</span>
+          <span class="tag is-info is-medium">BiSeNet</span>
+          <span class="tag is-info is-medium">InsightFace</span>
+          <span class="tag is-info is-medium">CLIP ViT-H/14</span>
+          <span class="tag is-info is-medium">Gemini 2.5 Flash</span>
+        </div>
+
+        <h3>Backend</h3>
+        <div class="tags">
+          <span class="tag is-success is-medium">FastAPI</span>
+          <span class="tag is-success is-medium">Uvicorn</span>
+          <span class="tag is-success is-medium">Celery</span>
+          <span class="tag is-success is-medium">SQLAlchemy</span>
+          <span class="tag is-success is-medium">Alembic</span>
+          <span class="tag is-success is-medium">JWT</span>
+          <span class="tag is-success is-medium">WebSocket</span>
+        </div>
+
+        <h3>Frontend</h3>
+        <div class="tags">
+          <span class="tag is-warning is-medium">Next.js</span>
+          <span class="tag is-warning is-medium">React</span>
+          <span class="tag is-warning is-medium">TypeScript</span>
+          <span class="tag is-warning is-medium">Tailwind CSS</span>
+        </div>
+
+        <h3>Database & Infrastructure</h3>
+        <div class="tags">
+          <span class="tag is-link is-medium">PostgreSQL</span>
+          <span class="tag is-link is-medium">Redis</span>
+          <span class="tag is-link is-medium">Docker</span>
+          <span class="tag is-link is-medium">Docker Compose</span>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Results -->
+  <!-- References -->
   <section class="section">
     <div class="container is-max-desktop">
-      <div class="columns is-centered">
-        <div class="column is-full-width">
-          <h2 class="title has-text-centered">Results</h2>
-          <div class="content has-text-justified">
-            <p>
-              Show off your results! Add images, videos, comparisons, and quantitative results.
-            </p>
-          </div>
-          <div class="image-container">
-            <img src="https://via.placeholder.com/800x400?text=Your+Results" alt="Results">
-          </div>
-        </div>
+      <h2 class="title has-text-centered">참고 문헌</h2>
+      
+      <div class="content">
+        <ul>
+          <li><a href="https://github.com/tencent-ailab/IP-Adapter">IP-Adapter</a> - Tencent AI Lab</li>
+          <li><a href="https://huggingface.co/diffusers/stable-diffusion-xl-1.0-inpainting-0.1">SDXL Inpainting</a> - Stability AI</li>
+          <li><a href="https://github.com/deepinsight/insightface">InsightFace</a> - Face Analysis</li>
+          <li><a href="https://github.com/zllrunning/face-parsing.PyTorch">BiSeNet</a> - Face Parsing</li>
+          <li><a href="https://github.com/huggingface/diffusers">Diffusers</a> - Hugging Face</li>
+          <li><a href="https://ai.google.dev/">Gemini API</a> - Google AI</li>
+        </ul>
       </div>
     </div>
   </section>
@@ -243,17 +538,14 @@
   <!-- BibTeX -->
   <section class="section">
     <div class="container is-max-desktop">
-      <div class="columns is-centered">
-        <div class="column is-full-width">
-          <h2 class="title has-text-centered">BibTeX</h2>
-          <pre><code>@article{yourname2024project,
-  title={Your Amazing Project Title},
-  author={Your Name and Collaborators},
-  journal={Conference/Journal Name},
-  year={2024}
+      <h2 class="title has-text-centered">BibTeX</h2>
+      <pre><code>@misc{diffusionplanet2025ipportrait,
+  title={IP-to-Portrait: SDXL Inpainting + IP-Adapter FaceID Plus v2 Face Synthesis Pipeline},
+  author={Hong, Jiyeon and Lim, Byungkun and Lee, Seongmin and Choi, Seoyeon},
+  year={2025},
+  howpublished={\url{https://github.com/Diffusion-planet/ip-to-portrait}},
+  note={Project Prometheus 2025-2 Demo Day - Team 4}
 }</code></pre>
-        </div>
-      </div>
     </div>
   </section>
 
@@ -263,6 +555,9 @@
       <div class="content has-text-centered">
         <p>
           Website template based on <a href="https://nerfies.github.io/">Nerfies</a>.
+        </p>
+        <p>
+          <a href="https://github.com/Diffusion-planet/ip-to-portrait">View on GitHub</a>
         </p>
       </div>
     </div>
