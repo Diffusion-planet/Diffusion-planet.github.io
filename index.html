@@ -5,7 +5,7 @@
   <meta name="description" content="IP-to-Portrait: SDXL Inpainting + IP-Adapter FaceID Plus v2 기반 얼굴 합성 파이프라인">
   <meta name="keywords" content="AI, Face Synthesis, SDXL, IP-Adapter, Inpainting, Diffusion Models">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>IP-to-Portrait: Deformable Neural Radiance Fields for Face Synthesis</title>
+  <title>IP-to-Portrait: Face Synthesis Pipeline</title>
 
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
@@ -75,7 +75,7 @@
     }
 
     .image-container img {
-      max-width: 100%;
+      max-width: 80%; /* 이미지 사이즈 줄임 (100% → 80%) */
       height: auto;
       border-radius: 8px;
       box-shadow: 0 4px 8px rgba(0,0,0,0.1);
@@ -126,6 +126,71 @@
       border-radius: 8px;
       margin: 2rem 0;
     }
+
+    /* Modal 스타일 */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgba(0,0,0,0.9);
+    }
+
+    .modal.is-active {
+      display: block;
+    }
+
+    .modal-content-custom {
+      margin: 2% auto;
+      padding: 20px;
+      width: 90%;
+      max-width: 1200px;
+      background-color: white;
+      border-radius: 8px;
+      max-height: 90vh;
+      overflow-y: auto;
+    }
+
+    .close-modal {
+      color: #aaa;
+      float: right;
+      font-size: 28px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .close-modal:hover,
+    .close-modal:focus {
+      color: black;
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+
+    .gallery-item {
+      text-align: center;
+    }
+
+    .gallery-item img {
+      width: 100%;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      margin-bottom: 0.5rem;
+    }
+
+    .gallery-item h4 {
+      font-size: 1rem;
+      font-weight: 600;
+      margin-top: 0.5rem;
+    }
   </style>
 </head>
 
@@ -143,16 +208,16 @@
             
             <div class="publication-authors">
               <span class="author-block">
-                <a href="https://github.com/danlee-dev">이성민</a>
+                <a href="https://github.com/hongjiyeon56">홍지연</a> (팀장),
               </span>
               <span class="author-block">
                 <a href="https://github.com/byungkun0823">임병건</a>,
               </span>
               <span class="author-block">
-                <a href="https://github.com/seoyeon-eo">최서연</a>,
+                <a href="https://github.com/danlee-dev">이성민</a>,
               </span>
               <span class="author-block">
-                <a href="https://github.com/hongjiyeon56">홍지연</a>
+                <a href="https://github.com/seoyeon-eo">최서연</a>
               </span>
             </div>
 
@@ -162,20 +227,22 @@
 
             <!-- Links -->
             <div class="publication-links">
+              <!-- Page 버튼 (Documentation → Page로 변경) -->
+              <span class="link-block">
+                <a href="#" id="openPageBtn" class="button is-dark is-rounded">
+                  <span class="icon">
+                    <i class="fas fa-images"></i>
+                  </span>
+                  <span>Page</span>
+                </a>
+              </span>
+              <!-- Code 버튼 -->
               <span class="link-block">
                 <a href="https://github.com/Diffusion-planet/ip-to-portrait" class="button is-dark is-rounded">
                   <span class="icon">
                     <i class="fab fa-github"></i>
                   </span>
                   <span>Code</span>
-                </a>
-              </span>
-              <span class="link-block">
-                <a href="https://github.com/Diffusion-planet/ip-to-portrait#readme" class="button is-dark is-rounded">
-                  <span class="icon">
-                    <i class="fas fa-book"></i>
-                  </span>
-                  <span>Documentation</span>
                 </a>
               </span>
               <span class="link-block">
@@ -194,13 +261,67 @@
               <img src="https://img.shields.io/badge/IP--Adapter-FaceID%20Plus%20v2-green?style=for-the-badge" alt="IP-Adapter">
               <img src="https://img.shields.io/badge/BiSeNet-Face%20Parsing-orange?style=for-the-badge" alt="BiSeNet">
               <img src="https://img.shields.io/badge/InsightFace-Face%20Embedding-red?style=for-the-badge" alt="InsightFace">
-              <img src="https://img.shields.io/badge/Gemini-2.5%20Flash-8E75B2?style=for-the-badge&logo=googlegem ini&logoColor=white" alt="Gemini">
+              <img src="https://img.shields.io/badge/Gemini-2.5%20Flash-8E75B2?style=for-the-badge&logo=googlegemini&logoColor=white" alt="Gemini">
             </div>
           </div>
         </div>
       </div>
     </div>
   </section>
+
+  <!-- Modal for Page Gallery -->
+  <div id="pageModal" class="modal">
+    <div class="modal-content-custom">
+      <span class="close-modal" id="closeModalBtn">&times;</span>
+      <h2 class="title has-text-centered">프로젝트 스크린샷 갤러리</h2>
+      
+      <div class="gallery-grid">
+        <!-- 이미지 1 -->
+        <div class="gallery-item">
+          <img src="images/generation-screen.png" alt="Generation Screen">
+          <h4>생성 워크플로우 화면</h4>
+          <p>노드 기반 워크플로우 인터페이스</p>
+        </div>
+
+        <!-- 이미지 2 -->
+        <div class="gallery-item">
+          <img src="images/inpainting-params.png" alt="Inpainting Parameters">
+          <h4>인페인팅 파라미터 노드</h4>
+          <p>디퓨전 및 마스킹 파라미터 설정</p>
+        </div>
+
+        <!-- 이미지 3 -->
+        <div class="gallery-item">
+          <img src="images/auto-prompt.png" alt="Auto Prompt">
+          <h4>자동 프롬프트 생성</h4>
+          <p>Gemini 기반 프롬프트 자동 생성</p>
+        </div>
+
+        <!-- 이미지 4 -->
+        <div class="gallery-item">
+          <img src="images/generation-control.png" alt="Generation Control">
+          <h4>생성 제어 및 미리보기</h4>
+          <p>실시간 latent 이미지 확인</p>
+        </div>
+
+        <!-- 이미지 5 -->
+        <div class="gallery-item">
+          <img src="images/history-modal.png" alt="History Modal">
+          <h4>생성 히스토리</h4>
+          <p>과거 생성 기록 조회</p>
+        </div>
+
+        <!-- 이미지 6 -->
+        <div class="gallery-item">
+          <img src="images/report-modal.png" alt="Report Modal">
+          <h4>생성 리포트</h4>
+          <p>상세 파라미터 및 결과 확인</p>
+        </div>
+
+        <!-- 추가 이미지들을 여기에 계속 추가 가능 -->
+      </div>
+    </div>
+  </div>
 
   <!-- Abstract -->
   <section class="section">
@@ -224,46 +345,20 @@
     </div>
   </section>
 
-  <!-- Demo Images -->
+  <!-- Demo Images (메인 페이지에는 간단하게만) -->
   <section class="section" id="demo">
     <div class="container is-max-desktop">
-      <h2 class="title has-text-centered">웹 애플리케이션</h2>
+      <h2 class="title has-text-centered">주요 기능</h2>
       
       <div class="content">
-        <h3>생성 워크플로우 화면</h3>
-        <p>메인 인터페이스는 노드 기반 워크플로우로 입력을 생성 파이프라인에 시각적으로 연결할 수 있습니다.</p>
         <div class="image-container">
           <img src="https://raw.githubusercontent.com/Diffusion-planet/ip-to-portrait/main/images/generation-screen.png" alt="Generation Screen">
+          <p style="margin-top: 1rem;">노드 기반 워크플로우로 직관적인 얼굴 합성</p>
         </div>
 
-        <h3>인페인팅 파라미터 노드</h3>
-        <p>직관적인 UI로 디퓨전 및 마스킹 파라미터를 구성할 수 있습니다.</p>
         <div class="image-container">
-          <img src="https://raw.githubusercontent.com/Diffusion-planet/ip-to-portrait/main/images/inpainting-parameters-setting-node.png" alt="Inpainting Parameters">
-        </div>
-
-        <h3>자동 프롬프트 생성</h3>
-        <p>Gemini 2.5 Flash가 얼굴 특징을 분석하여 상세한 설명적 프롬프트를 자동으로 생성합니다.</p>
-        <div class="image-container">
-          <img src="https://raw.githubusercontent.com/Diffusion-planet/ip-to-portrait/main/images/auto-prompt-generation-node.png" alt="Auto Prompt">
-        </div>
-
-        <h3>생성 제어 및 실시간 미리보기</h3>
-        <p>병렬 처리 지원으로 배치 생성을 제어하고 실시간으로 결과를 확인할 수 있습니다.</p>
-        <div class="image-container">
-          <img src="https://raw.githubusercontent.com/Diffusion-planet/ip-to-portrait/main/images/generation-control-and-step-result-latent-image-return-node.png" alt="Generation Control">
-        </div>
-
-        <h3>생성 히스토리</h3>
-        <p>전체 파라미터 리콜 기능으로 이전 생성에 접근할 수 있습니다.</p>
-        <div class="image-container">
-          <img src="https://raw.githubusercontent.com/Diffusion-planet/ip-to-portrait/main/images/generation-history-modal.png" alt="History">
-        </div>
-
-        <h3>생성 리포트</h3>
-        <p>모든 파라미터와 다운로드 가능한 결과가 포함된 상세 리포트를 제공합니다.</p>
-        <div class="image-container">
-          <img src="https://raw.githubusercontent.com/Diffusion-planet/ip-to-portrait/main/images/generation-report-modal.png" alt="Report">
+          <img src="https://raw.githubusercontent.com/Diffusion-planet/ip-to-portrait/main/images/face-inpainting-pipeline.png" alt="AI Pipeline">
+          <p style="margin-top: 1rem;">AI 파이프라인 구조</p>
         </div>
       </div>
     </div>
@@ -273,10 +368,6 @@
   <section class="section">
     <div class="container is-max-desktop">
       <h2 class="title has-text-centered">AI 파이프라인 구조</h2>
-      
-      <div class="image-container">
-        <img src="https://raw.githubusercontent.com/Diffusion-planet/ip-to-portrait/main/images/face-inpainting-pipeline.png" alt="AI Pipeline">
-      </div>
 
       <div class="content pipeline-diagram">
         <h3>파이프라인 흐름</h3>
@@ -398,33 +489,6 @@
           예를 들어 stop_at=0.7로 설정하면 생성 과정의 70% 지점까지는 FaceID가 강하게 정체성과 구조를 가이드하고, 
           이후 30%는 프롬프트만으로 자연스러운 디테일을 완성합니다.
         </p>
-
-        <table>
-          <thead>
-            <tr>
-              <th>Stop-At 값</th>
-              <th>효과</th>
-              <th>사용 시점</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>1.0</td>
-              <td>전체 과정에서 FaceID 적용</td>
-              <td>최대 정체성 보존</td>
-            </tr>
-            <tr>
-              <td>0.7-0.8</td>
-              <td>70-80%에서 FaceID 중단</td>
-              <td>권장 균형점</td>
-            </tr>
-            <tr>
-              <td>0.5-0.6</td>
-              <td>초반 스텝에서만 FaceID</td>
-              <td>얼굴이 부자연스러울 때</td>
-            </tr>
-          </tbody>
-        </table>
       </div>
     </div>
   </section>
@@ -563,5 +627,46 @@
     </div>
   </footer>
 
+  <!-- JavaScript for Modal -->
+  <script>
+    // Modal 열기
+    document.getElementById('openPageBtn').addEventListener('click', function(e) {
+      e.preventDefault();
+      document.getElementById('pageModal').classList.add('is-active');
+    });
+
+    // Modal 닫기
+    document.getElementById('closeModalBtn').addEventListener('click', function() {
+      document.getElementById('pageModal').classList.remove('is-active');
+    });
+
+    // 배경 클릭시 Modal 닫기
+    window.addEventListener('click', function(event) {
+      const modal = document.getElementById('pageModal');
+      if (event.target === modal) {
+        modal.classList.remove('is-active');
+      }
+    });
+  </script>
+
 </body>
 </html>
+```
+
+---
+
+## 3단계: 이미지 파일 경로 확인
+
+위 코드에서 이미지 경로가 `images/파일명.png`로 되어 있습니다.
+
+**저장소 구조:**
+```
+Diffusion-planet.github.io/
+├── index.html
+└── images/
+    ├── generation-screen.png
+    ├── inpainting-params.png
+    ├── auto-prompt.png
+    ├── generation-control.png
+    ├── history-modal.png
+    └── report-modal.png
