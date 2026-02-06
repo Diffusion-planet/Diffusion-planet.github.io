@@ -210,6 +210,11 @@
       <div class="container is-max-desktop">
         <div class="columns is-centered">
           <div class="column has-text-centered">
+            <!-- Logo -->
+            <div class="image-container" style="margin-bottom: 2rem;">
+              <img src="https://raw.githubusercontent.com/Diffusion-planet/ip-to-portrait/feature/pre-paste-faceswap/images/logo.svg" alt="IP-to-Portrait Logo" style="max-width: 200px;">
+            </div>
+            
             <h1 class="publication-title">IP-to-Portrait</h1>
             <p style="font-size: 1.3rem; margin-bottom: 1.5rem;">
               SDXL Inpainting + IP-Adapter FaceID Plus v2 기반 얼굴 합성 파이프라인
@@ -280,6 +285,18 @@
   <!-- Abstract -->
   <section class="section">
     <div class="container is-max-desktop">
+      
+      <!-- Result Gallery -->
+      <div class="box" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; margin-bottom: 3rem;">
+        <h3 class="title is-4 has-text-centered" style="color: white;">🎨 생성 결과 갤러리</h3>
+        <div class="image-container">
+          <img src="Frame 6.png" alt="IP-to-Portrait Results Gallery" style="max-width: 100%; border-radius: 12px; box-shadow: 0 8px 16px rgba(0,0,0,0.3);">
+        </div>
+        <p class="has-text-centered" style="margin-top: 1rem; font-size: 0.9rem;">
+          다양한 스타일과 포즈로 생성된 얼굴 합성 결과 예시
+        </p>
+      </div>
+
       <div class="columns is-centered has-text-centered">
         <div class="column is-four-fifths">
           <h2 class="title">Abstract</h2>
@@ -306,12 +323,52 @@
   <!-- Demo Images -->
   <section class="section" id="demo">
     <div class="container is-max-desktop">
-      <h2 class="title has-text-centered">주요 기능</h2>
+      <h2 class="title has-text-centered">주요 기능 및 데모</h2>
       
       <div class="content">
         <div class="image-container">
-          <img src="https://raw.githubusercontent.com/Diffusion-planet/ip-to-portrait/main/images/generation-screen.png" alt="Generation Screen">
+          <img src="https://raw.githubusercontent.com/Diffusion-planet/ip-to-portrait/feature/pre-paste-faceswap/images/generation-screen.png" alt="Generation Screen">
           <p style="margin-top: 1rem;"><strong>노드 기반 워크플로우로 직관적인 얼굴 합성</strong></p>
+        </div>
+
+        <div class="image-container">
+          <img src="https://raw.githubusercontent.com/Diffusion-planet/ip-to-portrait/feature/pre-paste-faceswap/images/inpainting-parameters-setting-node.png" alt="Parameters Node">
+          <p style="margin-top: 1rem;"><strong>인페인팅 파라미터 설정 노드</strong></p>
+        </div>
+
+        <div class="image-container">
+          <img src="https://raw.githubusercontent.com/Diffusion-planet/ip-to-portrait/feature/pre-paste-faceswap/images/auto-prompt-generation-node.png" alt="Auto Prompt">
+          <p style="margin-top: 1rem;"><strong>Gemini 2.5 Flash 자동 프롬프트 생성</strong></p>
+        </div>
+
+        <div class="image-container">
+          <img src="https://raw.githubusercontent.com/Diffusion-planet/ip-to-portrait/feature/pre-paste-faceswap/images/generation-control-and-step-result-latent-image-return-node.png" alt="Generation Control">
+          <p style="margin-top: 1rem;"><strong>생성 제어 및 실시간 Latent 미리보기</strong></p>
+        </div>
+
+        <div class="image-container">
+          <img src="https://raw.githubusercontent.com/Diffusion-planet/ip-to-portrait/feature/pre-paste-faceswap/images/generation-history-modal.png" alt="History Modal">
+          <p style="margin-top: 1rem;"><strong>생성 히스토리 및 파라미터 관리</strong></p>
+        </div>
+
+        <div class="image-container">
+          <img src="https://raw.githubusercontent.com/Diffusion-planet/ip-to-portrait/feature/pre-paste-faceswap/images/generation-report-modal.png" alt="Report Modal">
+          <p style="margin-top: 1rem;"><strong>상세 생성 리포트</strong></p>
+        </div>
+
+        <div class="columns">
+          <div class="column">
+            <div class="image-container">
+              <img src="https://raw.githubusercontent.com/Diffusion-planet/ip-to-portrait/feature/pre-paste-faceswap/images/login-screen.png" alt="Login">
+              <p style="margin-top: 1rem;"><strong>로그인</strong></p>
+            </div>
+          </div>
+          <div class="column">
+            <div class="image-container">
+              <img src="https://raw.githubusercontent.com/Diffusion-planet/ip-to-portrait/feature/pre-paste-faceswap/images/signup-screen.png" alt="Sign Up">
+              <p style="margin-top: 1rem;"><strong>회원가입</strong></p>
+            </div>
+          </div>
         </div>
 
         <div class="box">
@@ -338,7 +395,7 @@
       <h2 class="title has-text-centered">AI 파이프라인 구조</h2>
 
       <div class="image-container">
-        <img src="https://raw.githubusercontent.com/Diffusion-planet/ip-to-portrait/main/images/face-inpainting-pipeline.png" alt="AI Pipeline">
+        <img src="https://raw.githubusercontent.com/Diffusion-planet/ip-to-portrait/feature/pre-paste-faceswap/images/face-inpainting-pipeline.png" alt="AI Pipeline">
         <p style="margin-top: 1rem;"><strong>전체 파이프라인 아키텍처</strong></p>
       </div>
 
@@ -862,10 +919,203 @@ celery -A tasks worker --loglevel=info</code></pre>
   <!-- Database ERD -->
   <section class="section">
     <div class="container is-max-desktop">
-      <h2 class="title has-text-centered">데이터베이스 ERD</h2>
+      <h2 class="title has-text-centered">시스템 아키텍처</h2>
+
+      <div class="content">
+        <h3>전체 시스템 구조</h3>
+        <div class="box pipeline-diagram">
+          <pre><code>┌─────────────────┐
+│   Frontend      │  Next.js + React + TypeScript
+│   (Port 3008)   │  - 노드 기반 UI
+└────────┬────────┘  - 실시간 WebSocket
+         │
+         ▼
+┌─────────────────┐
+│   Backend API   │  FastAPI + Uvicorn
+│   (Port 8008)   │  - RESTful API
+└────────┬────────┘  - JWT 인증
+         │           - WebSocket 서버
+         ├──────────────────────┐
+         ▼                      ▼
+┌─────────────────┐    ┌─────────────────┐
+│   PostgreSQL    │    │   Redis Queue   │
+│   (Port 5433)   │    │   (Port 6379)   │
+└─────────────────┘    └────────┬────────┘
+                                 │
+                                 ▼
+                        ┌─────────────────┐
+                        │ Celery Workers  │
+                        │   (Multi-GPU)   │
+                        └─────────────────┘
+                                 │
+                        ┌────────┴────────┐
+                        ▼                 ▼
+                 ┌────────────┐    ┌────────────┐
+                 │  GPU 0     │    │  GPU 1     │
+                 │  Worker    │    │  Worker    │
+                 └────────────┘    └────────────┘</code></pre>
+        </div>
+
+        <h3>API 엔드포인트</h3>
+
+        <h4>인증 (Authentication)</h4>
+        <table>
+          <thead>
+            <tr>
+              <th>메소드</th>
+              <th>엔드포인트</th>
+              <th>설명</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>POST</td>
+              <td><code>/api/auth/register</code></td>
+              <td>새 사용자 계정 생성</td>
+            </tr>
+            <tr>
+              <td>POST</td>
+              <td><code>/api/auth/login</code></td>
+              <td>로그인 및 JWT 토큰 수신</td>
+            </tr>
+            <tr>
+              <td>POST</td>
+              <td><code>/api/auth/logout</code></td>
+              <td>로그아웃 (클라이언트 측 토큰 삭제)</td>
+            </tr>
+            <tr>
+              <td>GET</td>
+              <td><code>/api/auth/me</code></td>
+              <td>현재 사용자 정보 조회</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h4>생성 (Generation)</h4>
+        <table>
+          <thead>
+            <tr>
+              <th>메소드</th>
+              <th>엔드포인트</th>
+              <th>설명</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>POST</td>
+              <td><code>/api/generation/start</code></td>
+              <td>새 생성 배치 시작</td>
+            </tr>
+            <tr>
+              <td>GET</td>
+              <td><code>/api/generation/status/{batch_id}</code></td>
+              <td>배치 상태 및 진행 상황 조회</td>
+            </tr>
+            <tr>
+              <td>GET</td>
+              <td><code>/api/generation/task/{task_id}</code></td>
+              <td>개별 태스크 상태 조회</td>
+            </tr>
+            <tr>
+              <td>POST</td>
+              <td><code>/api/generation/cancel/{batch_id}</code></td>
+              <td>배치의 모든 태스크 취소</td>
+            </tr>
+            <tr>
+              <td>POST</td>
+              <td><code>/api/generation/task/{task_id}/regenerate</code></td>
+              <td>새 시드로 재생성</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h4>업로드 (Upload)</h4>
+        <table>
+          <thead>
+            <tr>
+              <th>메소드</th>
+              <th>엔드포인트</th>
+              <th>설명</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>POST</td>
+              <td><code>/api/upload/image</code></td>
+              <td>얼굴 또는 레퍼런스 이미지 업로드</td>
+            </tr>
+            <tr>
+              <td>DELETE</td>
+              <td><code>/api/upload/{file_id}</code></td>
+              <td>업로드된 파일 삭제</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h4>히스토리 (History)</h4>
+        <table>
+          <thead>
+            <tr>
+              <th>메소드</th>
+              <th>엔드포인트</th>
+              <th>설명</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>GET</td>
+              <td><code>/api/history/</code></td>
+              <td>생성 히스토리 조회 (페이지네이션)</td>
+            </tr>
+            <tr>
+              <td>GET</td>
+              <td><code>/api/history/{item_id}</code></td>
+              <td>특정 히스토리 항목 조회</td>
+            </tr>
+            <tr>
+              <td>POST</td>
+              <td><code>/api/history/{item_id}/favorite</code></td>
+              <td>즐겨찾기 상태 토글</td>
+            </tr>
+            <tr>
+              <td>PATCH</td>
+              <td><code>/api/history/{item_id}/title</code></td>
+              <td>히스토리 항목 제목 수정</td>
+            </tr>
+            <tr>
+              <td>DELETE</td>
+              <td><code>/api/history/{item_id}</code></td>
+              <td>히스토리 항목 삭제</td>
+            </tr>
+            <tr>
+              <td>DELETE</td>
+              <td><code>/api/history/</code></td>
+              <td>전체 히스토리 삭제</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h4>WebSocket</h4>
+        <table>
+          <thead>
+            <tr>
+              <th>엔드포인트</th>
+              <th>설명</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code>ws://{host}/ws/{client_id}</code></td>
+              <td>실시간 진행 상황 및 latent 이미지 업데이트</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h2 class="title has-text-centered" style="margin-top: 3rem;">데이터베이스 ERD</h2>
 
       <div class="image-container">
-        <img src="https://raw.githubusercontent.com/Diffusion-planet/ip-to-portrait/main/images/erd.png" alt="ERD Diagram">
+        <img src="https://raw.githubusercontent.com/Diffusion-planet/ip-to-portrait/feature/pre-paste-faceswap/images/erd.png" alt="ERD Diagram">
       </div>
 
       <div class="content">
